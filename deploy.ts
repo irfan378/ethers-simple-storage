@@ -47,6 +47,7 @@ wallet=await wallet.connect(provider)
   let contractFavouriteNumber = await contract.retrieve();
   console.log(`Current Favourite Number:${contractFavouriteNumber.toString()}`);
   const transactionResponse = await contract.store("7");
+  console.log(transactionResponse)
   const transactionReceipt = await transactionResponse.wait(1);
   contractFavouriteNumber = await contract.retrieve();
   console.log(`Updated Favourite Number:${contractFavouriteNumber.toString()}`);
