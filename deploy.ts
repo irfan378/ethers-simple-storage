@@ -5,10 +5,10 @@ import * as fs from "fs-extra";
 async function main() {
   // Connect to ganche blockchain
   const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
-  // const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
-  const encryptedJson=fs.readFileSync('./encryptedKey.json',"utf-8")
-let wallet= ethers.Wallet.fromEncryptedJsonSync(encryptedJson,process.env.PRIVATE_KEY_PASSWORD!)
-wallet=await wallet.connect(provider)
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
+  // const encryptedJson=fs.readFileSync('./encryptedKey.json',"utf-8")
+// let wallet= ethers.Wallet.fromEncryptedJsonSync(encryptedJson,process.env.PRIVATE_KEY_PASSWORD!)
+// wallet=await wallet.connect(provider)
   // read from abi
   const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf8");
   // read from binary
@@ -22,6 +22,7 @@ wallet=await wallet.connect(provider)
   const contract = await contractFactory.deploy();
   // const transactionReceipt = await contract.deployTransaction.wait(1);
   await contract.deployTransaction.wait(1);
+  console.log(`Contract Address ${contract.address}`)
   //get nonce count value from wallet
   // const nonce =await wallet.getTransactionCount()
   //Deploy with transaction data
