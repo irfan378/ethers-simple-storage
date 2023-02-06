@@ -7,7 +7,7 @@ async function main() {
         process.env.PRIVATE_KEY_PASSWORD!,
         process.env.PRIVATE_KEY
     )
-fs.writeFileSync("./encryptedKey.json",encryptedJsonKey)
+fs.writeFileSync("./.encryptedKey.json",encryptedJsonKey)
 }
 main()
   .then(() => process.exit(0))
